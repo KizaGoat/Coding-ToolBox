@@ -107,8 +107,25 @@
                     </h3>
                 </div>
                 <div class="card-body flex flex-col gap-5">
-                    Formulaire à créer
-                    <!-- @todo A compléter -->
+                    <form method="POST" class="card-body flex flex-col gap-5 p-10" action="{{ route('student.index') }}">
+
+                        <x-forms.input name="Prenom" :label="__('Prénom')" />
+
+                        <x-forms.input name="name" :label="__('Nom')" />
+
+                        <x-forms.input name="Email" :label="__('Email')" />
+
+                        <x-forms.input type="date" name="year" :label="__('Date de naissance')" placeholder="" />
+
+                        <x-forms.primary-button>
+                            {{ __('Valider') }}
+                        </x-forms.primary-button>
+                    </form>
+                </div>
+
+                <div class="card-body flex flex-col gap-5">
+                </div>
+
                 </div>
             </div>
         </div>
