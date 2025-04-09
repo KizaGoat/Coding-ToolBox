@@ -6,4 +6,13 @@
             </span>
         </h1>
     </x-slot>
+        <!-- Groupes -->
+        <div class="card card-grid h-full min-w-full flex flex-col justify-between">
+            <div class="card-header">
+                <h3 class="card-title text-center">
+                   Tous les Groupes
+                </h3>
+            </div>
+        </div>
+
 </x-app-layout>

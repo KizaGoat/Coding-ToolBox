@@ -11,8 +11,7 @@ class StudentController extends Controller
     {
         return view('pages.students.index');
     }
-    public function store(Request $request)
-        {
+    public function store(Request $request){
 
             User::create([
                 'last_name' => $request['name'],
@@ -21,6 +20,14 @@ class StudentController extends Controller
                 'password' => $request[''],
             ]);
 
-        }
+    }
+    public function CountStudents()
+    {
+        // Récupère le nombre total d'étudiants
+        $totalStudents = Student::count();
+
+        // Passe la variable à la vue
+        return view('pages.students.index', compact('totalStudents')); // compact() crée un tableau avec 'totalStudents'
     }
 
+}

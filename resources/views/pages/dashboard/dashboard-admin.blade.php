@@ -8,32 +8,77 @@
     </x-slot>
 
     <!-- begin: grid -->
-    <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
-        <div class="lg:col-span-2">
-            <div class="grid">
-                <div class="card card-grid h-full min-w-full">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            Block 1
-                        </h3>
-                    </div>
-                    <div class="card-body flex flex-col gap-5">
-
-                    </div>
-                </div>
+    <div class="grid lg:grid-cols-1 gap-5 lg:gap-7.5 items-stretch">
+        <!-- Cohorts -->
+        <div class="card card-grid h-full min-w-full flex flex-col justify-between">
+            <div class="card-header">
+                <h3 class="card-title text-center">
+                    Promotions
+                </h3>
+            </div>
+            <div class="card-body flex flex-col gap-5 justify-center items-center">
+                <button class="btn w-full" onclick="goToCategory('promotions')">Voir Promotions</button>
             </div>
         </div>
-        <div class="lg:col-span-1">
-            <div class="card card-grid h-full min-w-full">
-                <div class="card-header">
-                    <h3 class="card-title">
-                        Block 2
-                    </h3>
-                </div>
-                <div class="card-body flex flex-col gap-5">
-                </div>
+
+        <!-- Students -->
+        <div class="card card-grid h-full min-w-full flex flex-col justify-between">
+            <div class="card-header">
+                <h3 class="card-title text-center flex justify-center items-center">
+                    Etudiants
+                    <!--  -->
+                    <span class="ml-2 text-sm text-gray-600">({{ $totalStudents }} étudiants)</span>
+                </h3>
+            </div>
+            <div class="card-body flex flex-col gap-5 justify-center items-center">
+                <button class="btn w-full" onclick="goToCategory('etudiants')">Voir Etudiants</button>
+            </div>
+        </div>
+
+        <!-- Teachers -->
+        <div class="card card-grid h-full min-w-full flex flex-col justify-between">
+            <div class="card-header">
+                <h3 class="card-title text-center">
+                    Enseignants
+                </h3>
+            </div>
+            <div class="card-body flex flex-col gap-5 justify-center items-center">
+                <button class="btn w-full" onclick="goToCategory('enseignants')">Voir Enseignants</button>
+            </div>
+        </div>
+
+        <!-- Groups -->
+        <div class="card card-grid h-full min-w-full flex flex-col justify-between">
+            <div class="card-header">
+                <h3 class="card-title text-center">
+                    Groupes
+                </h3>
+            </div>
+            <div class="card-body flex flex-col gap-5 justify-center items-center">
+                <button class="btn w-full" onclick="goToCategory('groupes')">Voir Groupes</button>
             </div>
         </div>
     </div>
+    <!-- link of the page  -->
+    <script>
+        function goToCategory(category) {
+            switch (category) {
+                case 'promotions':
+                    window.location.href = '{{ route("pages.cohorts.index") }}';
+                    break;
+                case 'etudiants':
+                    window.location.href = '{{ route("pages.students.index") }}';
+                    break;
+                case 'enseignants':
+                    window.location.href = '{{ route("pages.teachers.index") }}';
+                    break;
+                case 'groupes':
+                    window.location.href = '{{ route("pages.groups.index") }}';
+                    break;
+                default:
+                    alert('Catégorie inconnue');
+            }
+        }
+    </script>
     <!-- end: grid -->
 </x-app-layout>

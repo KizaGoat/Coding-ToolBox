@@ -47,8 +47,24 @@ Route::middleware('auth')->group(function () {
         // Common life
         Route::get('common-life', [CommonLifeController::class, 'index'])->name('common-life.index');
 
+        // redirection for all on the dashboard
+        Route::get('/pages/students/index', function () {
+            return view('pages.students.index');
+        })->name('pages.students.index');
 
+        Route::get('/pages/groups/index', function () {
+            return view('pages.groups.index');
+        })->name('pages.groups.index');
 
+        Route::get('/pages/teachers/index', function () {
+            return view('pages.teachers.index');
+        })->name('pages.teachers.index');
+
+        Route::get('/pages/cohorts/index', function () {
+            return view('pages.cohorts.index');
+        })->name('pages.cohorts.index');
+
+        Route::get('/pages/students', [StudentController::class, 'index']);
 
     });
 

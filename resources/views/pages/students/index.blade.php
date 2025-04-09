@@ -47,46 +47,48 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Doe</td>
-                                            <td>John</td>
-                                            <td>12/02/2000</td>
-                                            <td>
-                                                <div class="flex items-center justify-between">
-                                                    <a href="#">
-                                                        <i class="text-success ki-filled ki-shield-tick"></i>
-                                                    </a>
+                                    <tr>
+                                        <td>Doe</td>
+                                        <td>John</td>
+                                        <td>12/02/2000</td>
+                                        <td>
+                                            <div class="flex items-center justify-between">
+                                                <a href="#">
+                                                    <i class="text-success ki-filled ki-shield-tick"></i>
+                                                </a>
 
-                                                    <a class="hover:text-primary cursor-pointer" href="#"
-                                                       data-modal-toggle="#student-modal">
-                                                        <i class="ki-filled ki-cursor"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Joe</td>
-                                            <td>Dohn</td>
-                                            <td>02/12/2000</td>
-                                            <td>
-                                                <div class="flex items-center justify-between">
-                                                    <a href="#">
-                                                        <i class="text-danger ki-filled ki-shield-cross"></i>
-                                                    </a>
-                                                    <a class="hover:text-primary cursor-pointer" href="#"
-                                                       data-modal-toggle="#student-modal">
-                                                        <i class="ki-filled ki-cursor"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                <a class="hover:text-primary cursor-pointer" href="#"
+                                                   data-modal-toggle="#student-modal">
+                                                    <i class="ki-filled ki-cursor"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Joe</td>
+                                        <td>Dohn</td>
+                                        <td>02/12/2000</td>
+                                        <td>
+                                            <div class="flex items-center justify-between">
+                                                <a href="#">
+                                                    <i class="text-danger ki-filled ki-shield-cross"></i>
+                                                </a>
+                                                <a class="hover:text-primary cursor-pointer" href="#"
+                                                   data-modal-toggle="#student-modal">
+                                                    <i class="ki-filled ki-cursor"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="card-footer justify-center md:justify-between flex-col md:flex-row gap-5 text-gray-600 text-2sm font-medium">
+                            <div
+                                class="card-footer justify-center md:justify-between flex-col md:flex-row gap-5 text-gray-600 text-2sm font-medium">
                                 <div class="flex items-center gap-2 order-2 md:order-1">
                                     Show
-                                    <select class="select select-sm w-16" data-datatable-size="true" name="perpage"></select>
+                                    <select class="select select-sm w-16" data-datatable-size="true"
+                                            name="perpage"></select>
                                     per page
                                 </div>
                                 <div class="flex items-center gap-4 order-1 md:order-2">
@@ -107,15 +109,16 @@
                     </h3>
                 </div>
                 <div class="card-body flex flex-col gap-5">
-                    <form method="POST" class="card-body flex flex-col gap-5 p-10" action="{{ route('student.index') }}">
+                    <form method="POST" class="card-body flex flex-col gap-5 p-10"
+                          action="{{ route('student.index') }}">
 
-                        <x-forms.input name="Prenom" :label="__('Prénom')" />
+                        <x-forms.input name="Prenom" :label="__('Prénom')"/>
 
-                        <x-forms.input name="name" :label="__('Nom')" />
+                        <x-forms.input name="name" :label="__('Nom')"/>
 
-                        <x-forms.input name="Email" :label="__('Email')" />
+                        <x-forms.input name="Email" :label="__('Email')"/>
 
-                        <x-forms.input type="date" name="year" :label="__('Date de naissance')" placeholder="" />
+                        <x-forms.input type="date" name="year" :label="__('Date de naissance')" placeholder=""/>
 
                         <x-forms.primary-button>
                             {{ __('Valider') }}
@@ -126,9 +129,9 @@
                 <div class="card-body flex flex-col gap-5">
                 </div>
 
-                </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- end: grid -->
 </x-app-layout>
