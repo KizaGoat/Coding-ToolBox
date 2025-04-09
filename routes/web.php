@@ -64,8 +64,7 @@ Route::middleware('auth')->group(function () {
             return view('pages.cohorts.index');
         })->name('pages.cohorts.index');
 
-        Route::get('/pages/students', [StudentController::class, 'index']);
-
+        Route::get('pages/dashboard/dashboard-admin', [DashboardController::class, 'index']);
     });
 
 });

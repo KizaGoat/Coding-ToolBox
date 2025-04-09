@@ -21,13 +21,5 @@ class StudentController extends Controller
             ]);
 
     }
-    public function CountStudents()
-    {
-        // Récupère le nombre total d'étudiants
-        $totalStudents = Student::count();
-
-        // Passe la variable à la vue
-        return view('pages.students.index', compact('totalStudents')); // compact() crée un tableau avec 'totalStudents'
-    }
 
 }

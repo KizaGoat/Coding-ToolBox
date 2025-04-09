@@ -16,6 +16,7 @@
                     Promotions
                 </h3>
             </div>
+            <p> Total des promotions: {{ $totalproms}}</p>
             <div class="card-body flex flex-col gap-5 justify-center items-center">
                 <button class="btn w-full" onclick="goToCategory('promotions')">Voir Promotions</button>
             </div>
@@ -26,10 +27,9 @@
             <div class="card-header">
                 <h3 class="card-title text-center flex justify-center items-center">
                     Etudiants
-                    <!--  -->
-                    <span class="ml-2 text-sm text-gray-600">({{ $totalStudents }} étudiants)</span>
                 </h3>
             </div>
+            <p> Total des étudiants : {{ $totalStudents }}</p>
             <div class="card-body flex flex-col gap-5 justify-center items-center">
                 <button class="btn w-full" onclick="goToCategory('etudiants')">Voir Etudiants</button>
             </div>
@@ -42,6 +42,7 @@
                     Enseignants
                 </h3>
             </div>
+            <p> Total des Enseignants: {{ $totalteacher  }}</p>
             <div class="card-body flex flex-col gap-5 justify-center items-center">
                 <button class="btn w-full" onclick="goToCategory('enseignants')">Voir Enseignants</button>
             </div>
@@ -54,6 +55,7 @@
                     Groupes
                 </h3>
             </div>
+            <p> Total des Groupes: {{ $totalgroups }}</p>
             <div class="card-body flex flex-col gap-5 justify-center items-center">
                 <button class="btn w-full" onclick="goToCategory('groupes')">Voir Groupes</button>
             </div>
