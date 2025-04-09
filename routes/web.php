@@ -66,14 +66,12 @@ Route::middleware('auth')->group(function () {
 
         Route::get('pages/dashboard/dashboard-admin', [DashboardController::class, 'index']);
 
-        Route::middleware(['auth'])->group(function () {
-            Route::get('pages/tasks', [TaskController::class, 'index']);
-            Route::post('pages/tasks', [TaskController::class, 'store']);
-            Route::post('pages/tasks', [TaskController::class, 'store'])->name('tasks.store');
-            Route::post('pages/tasks', [TaskController::class, 'create']);
-            Route::put('pages/tasks/{taskId}/toggle', [TaskController::class, 'toggleCompletion']);
-            Route::delete('pages/tasks/{taskId}', [TaskController::class, 'delete']);
-        });
+        Route::get('pages/common-life', [CommonLifeController::class, 'index'])->name('commonLife.index');
+
+        Route::post('pages/common-life', [CommonLifeController::class, 'store'])->name('commonLife.store');
+
+        Route::post('pages/common-life/{id}/complete', [CommonLifeController::class, 'complete'])->name('commonLife.complete');
+
 
     });
 
