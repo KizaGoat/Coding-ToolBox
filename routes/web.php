@@ -65,6 +65,16 @@ Route::middleware('auth')->group(function () {
         })->name('pages.cohorts.index');
 
         Route::get('pages/dashboard/dashboard-admin', [DashboardController::class, 'index']);
+
+        Route::middleware(['auth'])->group(function () {
+            Route::get('pages/tasks', [TaskController::class, 'index']);
+            Route::post('pages/tasks', [TaskController::class, 'store']);
+            Route::post('pages/tasks', [TaskController::class, 'store'])->name('tasks.store');
+            Route::post('pages/tasks', [TaskController::class, 'create']);
+            Route::put('pages/tasks/{taskId}/toggle', [TaskController::class, 'toggleCompletion']);
+            Route::delete('pages/tasks/{taskId}', [TaskController::class, 'delete']);
+        });
+
     });
 
 });
