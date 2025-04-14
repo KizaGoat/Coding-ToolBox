@@ -23,6 +23,7 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
+        // validate the request data
         $request->validate([
 
             'name' => 'required|string|max:255',
@@ -31,6 +32,7 @@ class StudentController extends Controller
             'year' => 'required|date',
         ]);
 
+        // create new user
         $user = new User();
         $user->first_name = $request->input('Prenom');
         $user->last_name = $request->input('name');
@@ -40,7 +42,7 @@ class StudentController extends Controller
         $user->save();
 
 
-
+        // associate one user to one school and give him student role
         $user_school = new UserSchool();
         $user_school->user_id = $user->id;
         $user_school->school_id = 1;
@@ -52,10 +54,18 @@ class StudentController extends Controller
         return redirect()->route('student.index')->with('success', 'L\'étudiant a été créé avec succès');
     }
 
+    // this function is used for delete any column
+    public function destroy($id)
+    {
+        $user_school = UserSchool::findOrFail($id);
+        $user_school->delete();
+
+        return redirect()->route('student.index')->with('success', 'etudiant supprimée avec succès');
+    }
+
+    // this function is used for edit any column
     public function edit(Request $request, $id)
     {
 
-        // Recuperer le user par l'id
-        // Modifier les colonnes
     }
 }

@@ -77,10 +77,13 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::post('/students', [StudentController::class, 'store'])->name('student.store');
+        Route::delete('student/{id}', [StudentController::class, 'destroy'])->name('student.destroy');
+
         Route::post('/teachers', [TeacherController::class, 'store'])->name('teacher.store');
+        Route::delete('teacher/{id}', [TeacherController::class, 'destroy'])->name('teacher.destroy');
 
         Route::post('/cohorts', [CohortController::class, 'store'])->name('cohort.store');
-
+        Route::delete('cohort/{id}', [CohortController::class, 'destroy'])->name('cohort.destroy');
 
 
 

@@ -1,5 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
+        <!-- Page Header displaying the title 'Etudiants' -->
         <h1 class="flex items-center gap-1 text-sm font-normal">
             <span class="text-gray-700">
                 {{ __('Etudiants') }}
@@ -9,7 +10,6 @@
 
     <!-- begin: grid -->
     <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
-        <!-- students list -->
         <div class="lg:col-span-2">
             <div class="grid">
                 <div class="card card-grid h-full min-w-full">
@@ -33,29 +33,38 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($user_schools as $user_schoolsss)
-                                            <tr>
-                                                <td>
-                                                    {{$user_schoolsss->user->last_name}}
-                                                </td>
+                                    <!-- student list -->
+                                    @foreach($user_schools as $user_schoolsss)
+                                        <tr>
+                                            <td>{{ $user_schoolsss->user->last_name }}</td>
+                                            <td>{{ $user_schoolsss->user->first_name }}</td>
+                                            <td>{{ $user_schoolsss->user->birth_date }}</td>
+                                            <td>
+                                                <div class="flex items-center justify-between">
 
-                                                <td>{{$user_schoolsss->user->first_name}}</td>
-                                                <td>{{$user_schoolsss->user->birth_date}}</td>
-                                                <td>
-                                                    <div class="flex items-center justify-between">
-                                                        <a href="#">
-                                                            <i class="text-success ki-filled ki-shield-tick"></i>
-                                                        </a>
-                                                        <a class="hover:text-primary cursor-pointer" href="#" data-modal-toggle="#student-modal">
-                                                            <i class="ki-filled ki-cursor"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                                    <a href="#">
+                                                        <i class="text-success ki-filled ki-shield-tick"></i>
+                                                    </a>
+
+                                                    <a class="hover:text-primary cursor-pointer" href="#" data-modal-toggle="#student-modal">
+                                                        <i class="ki-filled ki-cursor"></i>
+                                                    </a>
+                                                </div>
+                                                <!-- delete button -->
+                                                <form method="POST" action="{{ route('student.destroy', $user_schoolsss->id) }}" style="display: inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md">
+                                                        Supprimer
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
+
                             <div class="card-footer justify-center md:justify-between flex-col md:flex-row gap-5 text-gray-600 text-2sm font-medium">
                                 <div class="flex items-center gap-2 order-2 md:order-1">
                                     Show
@@ -73,22 +82,26 @@
             </div>
         </div>
 
-        <!--forms student creation  -->
         <div class="lg:col-span-1">
             <div class="card h-full">
                 <div class="card-header">
                     <h3 class="card-title">Ajouter un étudiant</h3>
                 </div>
                 <div class="card-body flex flex-col gap-5">
+                    <!-- form for create student -->
                     <form method="POST" action="{{ route('student.store') }}" class="card-body flex flex-col gap-5 p-10">
                         @csrf
                         <x-forms.input name="Prenom" :label="__('Prénom')" />
                         <x-forms.input name="name" :label="__('Nom')" />
                         <x-forms.input type="email" name="Email" :label="__('Email')" />
                         <x-forms.input type="date" name="year" :label="__('Date de naissance')" placeholder=""/>
+
+                        <!-- Submit button  -->
                         <x-forms.primary-button>
                             {{ __('Valider') }}
                         </x-forms.primary-button>
+
+                        <!-- Success message -->
                         @if(session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}

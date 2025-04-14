@@ -7,7 +7,7 @@
         </h1>
     </x-slot>
 
-    <!-- begin: grid -->
+    <!-- Main content: Grid layout -->
     <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
         <div class="lg:col-span-2">
             <div class="grid">
@@ -22,64 +22,75 @@
                                     <thead>
                                     <tr>
                                         <th class="min-w-[280px]">
-                                                <span class="sort asc">
+                                            <span class="sort asc">
                                                     <span class="sort-label">Promotion</span>
                                                     <span class="sort-icon"></span>
                                                 </span>
                                         </th>
                                         <th class="min-w-[135px]">
-                                                <span class="sort">
+                                            <span class="sort">
                                                     <span class="sort-label">Année</span>
                                                     <span class="sort-icon"></span>
                                                 </span>
                                         </th>
                                         <th class="min-w-[135px]">
-                                                <span class="sort">
-                                                    <span class="sort-label">Etudiants</span>
+                                            <span class="sort">
+                                                    <span class="sort-label">Actions</span>
                                                     <span class="sort-icon"></span>
                                                 </span>
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <!-- Promotion en dur -->
-                                    <tr>
-                                        <td>
-                                            <div class="flex flex-col gap-2">
-                                                <a class="leading-none font-medium text-sm text-gray-900 hover:text-primary"
-                                                   href="{{ route('cohort.show', 1) }}">
-                                                    Promotion B1
-                                                </a>
-                                                <span class="text-2sm text-gray-700 font-normal leading-3">
-                                                        Cergy
-                                                    </span>
-                                            </div>
-                                        </td>
-                                        <td>2024-2025</td>
-                                        <td>34</td>
-                                    </tr>
 
-                                    <!-- Boucle pour afficher les promotions depuis la BDD -->
+                                    <!-- list of cohorts  -->
                                     @foreach($cohorts as $cohort)
                                         <tr>
                                             <td>
                                                 <div class="flex flex-col gap-2">
+
                                                     <a class="leading-none font-medium text-sm text-gray-900 hover:text-primary"
+
                                                        href="{{ route('cohort.show', $cohort->id) }}">
                                                         {{ $cohort->name }}
                                                     </a>
+
                                                     <span class="text-2sm text-gray-700 font-normal leading-3">
-                                                        {{ $cohort->description }}
-                                                    </span>
+                                                            {{ $cohort->description }}
+                                                        </span>
                                                 </div>
+
                                             </td>
+
                                             <td>{{ \Carbon\Carbon::parse($cohort->start_date)->format('Y') }} - {{ \Carbon\Carbon::parse($cohort->end_date)->format('Y') }}</td>
-                                            <td>{{ $cohort->students_count }}</td> <!-- Si tu as la logique pour compter les étudiants -->
+                                            <td>
+
+                                                <!-- delete cohort -->
+                                                <form method="POST" action="{{ route('cohort.destroy', $cohort->id) }}" style="display: inline-block;">
+                                                        <div class="flex items-center justify-between">
+                                                            @csrf
+                                                            @method('DELETE')
+
+                                                            <a href="#">
+                                                                <i class="text-success ki-filled ki-shield-tick"></i>
+                                                            </a>
+
+                                                            <a class="hover:text-primary cursor-pointer" href="#" data-modal-toggle="#student-modal">
+                                                                <i class="ki-filled ki-cursor"></i>
+                                                            </a>
+                                                        </div>
+                                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md">
+                                                        Supprimer
+                                                    </button>
+
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
                             </div>
+
                             <div class="card-footer justify-center md:justify-between flex-col md:flex-row gap-5 text-gray-600 text-2sm font-medium">
                                 <div class="flex items-center gap-2 order-2 md:order-1">
                                     Show
@@ -96,17 +107,22 @@
                 </div>
             </div>
         </div>
+
         <div class="lg:col-span-1">
             <div class="card h-full">
                 <div class="card-header">
                     <h3 class="card-title">Ajouter une promotion</h3>
                 </div>
+
+                <!-- form for add cohort -->
                 <form method="POST" action="{{ route('cohort.store') }}">
                     @csrf
                     <x-forms.input name="name" :label="__('Nom')" />
                     <x-forms.input name="description" :label="__('Description')" />
                     <x-forms.input type="date" name="start_date" :label="__('Début de l\'année')" />
                     <x-forms.input type="date" name="end_date" :label="__('Fin de l\'année')" />
+
+                    <!-- button submit -->
                     <x-forms.primary-button>
                         {{ __('Valider') }}
                     </x-forms.primary-button>
