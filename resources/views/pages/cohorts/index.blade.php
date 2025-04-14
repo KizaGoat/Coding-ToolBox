@@ -22,27 +22,28 @@
                                     <thead>
                                     <tr>
                                         <th class="min-w-[280px]">
-                                            <span class="sort asc">
-                                                 <span class="sort-label">Promotion</span>
-                                                 <span class="sort-icon"></span>
-                                            </span>
+                                                <span class="sort asc">
+                                                    <span class="sort-label">Promotion</span>
+                                                    <span class="sort-icon"></span>
+                                                </span>
                                         </th>
                                         <th class="min-w-[135px]">
-                                            <span class="sort">
-                                                <span class="sort-label">Année</span>
-                                                <span class="sort-icon"></span>
-                                            </span>
+                                                <span class="sort">
+                                                    <span class="sort-label">Année</span>
+                                                    <span class="sort-icon"></span>
+                                                </span>
                                         </th>
                                         <th class="min-w-[135px]">
-                                            <span class="sort">
-                                                <span class="sort-label">Etudiants</span>
-                                                <span class="sort-icon"></span>
-                                            </span>
+                                                <span class="sort">
+                                                    <span class="sort-label">Etudiants</span>
+                                                    <span class="sort-icon"></span>
+                                                </span>
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                    <!-- Promotion en dur -->
+                                    <tr>
                                         <td>
                                             <div class="flex flex-col gap-2">
                                                 <a class="leading-none font-medium text-sm text-gray-900 hover:text-primary"
@@ -50,13 +51,32 @@
                                                     Promotion B1
                                                 </a>
                                                 <span class="text-2sm text-gray-700 font-normal leading-3">
-                                                    Cergy
-                                                </span>
+                                                        Cergy
+                                                    </span>
                                             </div>
                                         </td>
                                         <td>2024-2025</td>
                                         <td>34</td>
                                     </tr>
+
+                                    <!-- Boucle pour afficher les promotions depuis la BDD -->
+                                    @foreach($cohorts as $cohort)
+                                        <tr>
+                                            <td>
+                                                <div class="flex flex-col gap-2">
+                                                    <a class="leading-none font-medium text-sm text-gray-900 hover:text-primary"
+                                                       href="{{ route('cohort.show', $cohort->id) }}">
+                                                        {{ $cohort->name }}
+                                                    </a>
+                                                    <span class="text-2sm text-gray-700 font-normal leading-3">
+                                                        {{ $cohort->description }}
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td>{{ \Carbon\Carbon::parse($cohort->start_date)->format('Y') }} - {{ \Carbon\Carbon::parse($cohort->end_date)->format('Y') }}</td>
+                                            <td>{{ $cohort->students_count }}</td> <!-- Si tu as la logique pour compter les étudiants -->
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -79,23 +99,18 @@
         <div class="lg:col-span-1">
             <div class="card h-full">
                 <div class="card-header">
-                    <h3 class="card-title">
-                        Ajouter une promotion
-                    </h3>
+                    <h3 class="card-title">Ajouter une promotion</h3>
                 </div>
-                <div class="card-body flex flex-col gap-5">
+                <form method="POST" action="{{ route('cohort.store') }}">
+                    @csrf
                     <x-forms.input name="name" :label="__('Nom')" />
-
                     <x-forms.input name="description" :label="__('Description')" />
-
-                    <x-forms.input type="date" name="year" :label="__('Début de l\'année')" placeholder="" />
-
-                    <x-forms.input type="date" name="year" :label="__('Fin de l\'année')" placeholder="" />
-
+                    <x-forms.input type="date" name="start_date" :label="__('Début de l\'année')" />
+                    <x-forms.input type="date" name="end_date" :label="__('Fin de l\'année')" />
                     <x-forms.primary-button>
                         {{ __('Valider') }}
                     </x-forms.primary-button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
