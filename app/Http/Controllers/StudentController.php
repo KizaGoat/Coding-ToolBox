@@ -14,7 +14,10 @@ class StudentController extends Controller
     public function index()
     {
 
-        $user_schools = UserSchool::where('role', 'student')->get();
+        $user_schools = UserSchool::where('role', 'student')
+            ->whereHas('user')
+            ->with('user')
+            ->get();
         return view('pages.students.index', compact('user_schools'));
     }
 

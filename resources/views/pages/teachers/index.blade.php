@@ -2,18 +2,19 @@
     <x-slot name="header">
         <h1 class="flex items-center gap-1 text-sm font-normal">
             <span class="text-gray-700">
-                {{ __('Enseignants') }}
+                {{ __('enseignant') }}
             </span>
         </h1>
     </x-slot>
 
     <!-- begin: grid -->
     <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
+        <!-- students list -->
         <div class="lg:col-span-2">
             <div class="grid">
                 <div class="card card-grid h-full min-w-full">
                     <div class="card-header">
-                        <h3 class="card-title">Liste des enseignants</h3>
+                        <h3 class="card-title">Liste des enseignant</h3>
                         <div class="input input-sm max-w-48">
                             <i class="ki-filled ki-magnifier"></i>
                             <input placeholder="Rechercher un enseignant" type="text"/>
@@ -25,53 +26,33 @@
                                 <table class="table table-border" data-datatable-table="true">
                                     <thead>
                                     <tr>
-                                        <th class="min-w-[135px]">
-                                            <span class="sort asc">
-                                                 <span class="sort-label">Nom</span>
-                                                 <span class="sort-icon"></span>
-                                            </span>
-                                        </th>
-                                        <th class="min-w-[135px]">
-                                            <span class="sort">
-                                                <span class="sort-label">Prénom</span>
-                                                <span class="sort-icon"></span>
-                                            </span>
-                                        </th>
-                                        <th class="w-[70px]"></th>
+                                        <th class="min-w-[135px]">Nom</th>
+                                        <th class="min-w-[135px]">Prénom</th>
+                                        <th class="min-w-[135px]">Date de naissance</th>
+                                        <th class="w-[70px]">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($user_schools as $user_schoolsss)
                                         <tr>
-                                            <td>Doe</td>
-                                            <td>John</td>
+                                            <td>
+                                                {{$user_schoolsss->user->last_name}}
+                                            </td>
+
+                                            <td>{{$user_schoolsss->user->first_name}}</td>
+                                            <td>{{$user_schoolsss->user->birth_date}}</td>
                                             <td>
                                                 <div class="flex items-center justify-between">
                                                     <a href="#">
                                                         <i class="text-success ki-filled ki-shield-tick"></i>
                                                     </a>
-
-                                                    <a class="hover:text-primary cursor-pointer" href="#"
-                                                       data-modal-toggle="#student-modal">
+                                                    <a class="hover:text-primary cursor-pointer" href="#" data-modal-toggle="#student-modal">
                                                         <i class="ki-filled ki-cursor"></i>
                                                     </a>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Joe</td>
-                                            <td>Dohn</td>
-                                            <td>
-                                                <div class="flex items-center justify-between">
-                                                    <a href="#">
-                                                        <i class="text-danger ki-filled ki-shield-cross"></i>
-                                                    </a>
-                                                    <a class="hover:text-primary cursor-pointer" href="#"
-                                                       data-modal-toggle="#student-modal">
-                                                        <i class="ki-filled ki-cursor"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -91,21 +72,33 @@
                 </div>
             </div>
         </div>
+
+        <!--forms student creation  -->
         <div class="lg:col-span-1">
             <div class="card h-full">
                 <div class="card-header">
-                    <h3 class="card-title">
-                        Ajouter un Enseignant
-                    </h3>
+                    <h3 class="card-title">Ajouter un enseignant</h3>
                 </div>
                 <div class="card-body flex flex-col gap-5">
-                    Formulaire à créer
-                    <!-- @todo A compléter -->
+                    <form method="POST" action="{{ route('teacher.store') }}" class="card-body flex flex-col gap-5 p-10">
+                        @csrf
+                        <x-forms.input name="Prenom" :label="__('Prénom')" />
+                        <x-forms.input name="name" :label="__('Nom')" />
+                        <x-forms.input type="email" name="Email" :label="__('Email')" />
+                        <x-forms.input type="date" name="year" :label="__('Date de naissance')" placeholder=""/>
+                        <x-forms.primary-button>
+                            {{ __('Valider') }}
+                        </x-forms.primary-button>
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <!-- end: grid -->
-</x-app-layout>
 
-@include('pages.teachers.teacher-modal')
+</x-app-layout>

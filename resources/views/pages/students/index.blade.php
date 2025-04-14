@@ -33,30 +33,26 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($user_schools as $user_school)
-                                        <tr>
-                                            <td>
-                                                <form method="POST" action="{{route(''), $user_school->id}}">
-                                                    @csrf
-                                                    @method('PUT')
+                                        @foreach($user_schools as $user_schoolsss)
+                                            <tr>
+                                                <td>
+                                                    {{$user_schoolsss->user->last_name}}
+                                                </td>
 
-                                                    <input type="text" name="last_name" value="{{ $user_school->user->last_name }}" onchange="this.form.submit()">
-                                                </form>
-                                            </td>
-                                            <td>{{$user_school->user->first_name}}</td>
-                                            <td>{{$user_school->user->birth_date}}</td>
-                                            <td>
-                                                <div class="flex items-center justify-between">
-                                                    <a href="#">
-                                                        <i class="text-success ki-filled ki-shield-tick"></i>
-                                                    </a>
-                                                    <a class="hover:text-primary cursor-pointer" href="#" data-modal-toggle="#student-modal">
-                                                        <i class="ki-filled ki-cursor"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                                <td>{{$user_schoolsss->user->first_name}}</td>
+                                                <td>{{$user_schoolsss->user->birth_date}}</td>
+                                                <td>
+                                                    <div class="flex items-center justify-between">
+                                                        <a href="#">
+                                                            <i class="text-success ki-filled ki-shield-tick"></i>
+                                                        </a>
+                                                        <a class="hover:text-primary cursor-pointer" href="#" data-modal-toggle="#student-modal">
+                                                            <i class="ki-filled ki-cursor"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

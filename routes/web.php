@@ -77,7 +77,7 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::post('/students', [StudentController::class, 'store'])->name('student.store');
-        Route::put('/users/{id}', [StudentController::class, 'store'])->name('student.store');
+        Route::post('/teachers', [TeacherController::class, 'store'])->name('teacher.store');
 
 
     });

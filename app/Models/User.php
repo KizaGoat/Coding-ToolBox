@@ -92,7 +92,7 @@ class User extends Authenticatable
 
     public function user_school()
     {
-        return $this->hasOne(School::class, 'users_schools');
+        return $this->hasOne(School::class);
     }
 
 
