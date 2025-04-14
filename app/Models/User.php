@@ -25,6 +25,7 @@ class User extends Authenticatable
         'first_name',
         'email',
         'password',
+        'birth_date'
     ];
 
     /**
@@ -49,6 +50,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+    public function promotions()
+    {
+        return $this->hasMany(Promotion::class); // ou via une table pivot si plusieurs promos ?
+    }
+
 
     /**
      * This function returns the full name of the connected user
@@ -81,4 +89,11 @@ class User extends Authenticatable
             ->withPivot('role')
             ->first();
     }
+
+    public function user_school()
+    {
+        return $this->hasOne(School::class, 'users_schools');
+    }
+
+
 }

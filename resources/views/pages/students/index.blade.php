@@ -9,6 +9,7 @@
 
     <!-- begin: grid -->
     <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
+        <!-- students list -->
         <div class="lg:col-span-2">
             <div class="grid">
                 <div class="card card-grid h-full min-w-full">
@@ -25,41 +26,31 @@
                                 <table class="table table-border" data-datatable-table="true">
                                     <thead>
                                     <tr>
-                                        <th class="min-w-[135px]">
-                                            <span class="sort asc">
-                                                 <span class="sort-label">Nom</span>
-                                                 <span class="sort-icon"></span>
-                                            </span>
-                                        </th>
-                                        <th class="min-w-[135px]">
-                                            <span class="sort">
-                                                <span class="sort-label">Prénom</span>
-                                                <span class="sort-icon"></span>
-                                            </span>
-                                        </th>
-                                        <th class="min-w-[135px]">
-                                            <span class="sort">
-                                                <span class="sort-label">Date de naissance</span>
-                                                <span class="sort-icon"></span>
-                                            </span>
-                                        </th>
-                                        <th class="w-[70px]"></th>
+                                        <th class="min-w-[135px]">Nom</th>
+                                        <th class="min-w-[135px]">Prénom</th>
+                                        <th class="min-w-[135px]">Date de naissance</th>
+                                        <th class="w-[70px]">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($students as $student)
+                                    @foreach($user_schools as $user_school)
                                         <tr>
-                                            <td>{{ $student->last_name }}</td>
-                                            <td>{{ $student->first_name }}</td>
-                                            <td>{{ $student->date_of_birth ? \Carbon\Carbon::parse($student->date_of_birth)->format('d/m/Y') : 'N/A' }}</td>
+                                            <td>
+                                                <form method="POST" action="{{route(''), $user_school->id}}">
+                                                    @csrf
+                                                    @method('PUT')
+
+                                                    <input type="text" name="last_name" value="{{ $user_school->user->last_name }}" onchange="this.form.submit()">
+                                                </form>
+                                            </td>
+                                            <td>{{$user_school->user->first_name}}</td>
+                                            <td>{{$user_school->user->birth_date}}</td>
                                             <td>
                                                 <div class="flex items-center justify-between">
                                                     <a href="#">
                                                         <i class="text-success ki-filled ki-shield-tick"></i>
                                                     </a>
-
-                                                    <a class="hover:text-primary cursor-pointer" href="#"
-                                                       data-modal-toggle="#student-modal">
+                                                    <a class="hover:text-primary cursor-pointer" href="#" data-modal-toggle="#student-modal">
                                                         <i class="ki-filled ki-cursor"></i>
                                                     </a>
                                                 </div>
@@ -85,70 +76,33 @@
                 </div>
             </div>
         </div>
+
+        <!--forms student creation  -->
         <div class="lg:col-span-1">
             <div class="card h-full">
                 <div class="card-header">
-                    <h3 class="card-title">
-                        Ajouter un étudiant
-                    </h3>
+                    <h3 class="card-title">Ajouter un étudiant</h3>
                 </div>
                 <div class="card-body flex flex-col gap-5">
-                    <form method="POST" action="{{ route('students.store') }}" class="card-body flex flex-col gap-5 p-10">
+                    <form method="POST" action="{{ route('student.store') }}" class="card-body flex flex-col gap-5 p-10">
                         @csrf
-
-                        <!-- Prénom -->
-                        <div class="form-group">
-                            <label for="first_name" class="block text-sm font-medium text-gray-700">Prénom</label>
-                            <input type="text" name="first_name" id="first_name" required
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                   placeholder="Prénom de l'étudiant">
-                        </div>
-
-                        <!-- Nom -->
-                        <div class="form-group">
-                            <label for="last_name" class="block text-sm font-medium text-gray-700">Nom</label>
-                            <input type="text" name="last_name" id="last_name" required
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                   placeholder="Nom de l'étudiant">
-                        </div>
-
-                        <!-- Email -->
-                        <div class="form-group">
-                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                            <input type="email" name="email" id="email" required
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                   placeholder="Email de l'étudiant">
-                        </div>
-
-                        <!-- Date de naissance -->
-                        <div class="form-group">
-                            <label for="date_of_birth" class="block text-sm font-medium text-gray-700">Date de naissance</label>
-                            <input type="date" name="date_of_birth" id="date_of_birth" required
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                        </div>
-
-                        <!-- Promotion -->
-                        <div class="form-group">
-                            <label for="promotion_id" class="block text-sm font-medium text-gray-700">Promotion</label>
-                            <select name="promotion_id" id="promotion_id" required
-                                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                <option value="">Sélectionner une promotion</option>
-                                @foreach ($promotions as $promotion)
-                                    <option value="{{ $promotion->id }}">{{ $promotion->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!-- Bouton pour envoyer le formulaire -->
+                        <x-forms.input name="Prenom" :label="__('Prénom')" />
+                        <x-forms.input name="name" :label="__('Nom')" />
+                        <x-forms.input type="email" name="Email" :label="__('Email')" />
+                        <x-forms.input type="date" name="year" :label="__('Date de naissance')" placeholder=""/>
                         <x-forms.primary-button>
-                            {{ __('Ajouter') }}
+                            {{ __('Valider') }}
                         </x-forms.primary-button>
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <!-- end: grid -->
-</x-app-layout>
 
-@include('pages.students.student-modal')
+</x-app-layout>

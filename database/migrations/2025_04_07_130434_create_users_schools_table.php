@@ -16,7 +16,7 @@ return new class extends Migration
 
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('school_id');
+            $table->unsignedBigInteger('school_id')->nullable();
             $table->enum('role', ['admin', 'teacher', 'student'])->default('student');
             $table->timestamps();
         });

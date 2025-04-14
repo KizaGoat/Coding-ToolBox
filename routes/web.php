@@ -72,6 +72,13 @@ Route::middleware('auth')->group(function () {
 
         Route::post('pages/common-life/{id}/complete', [CommonLifeController::class, 'complete'])->name('commonLife.complete');
 
+        Route::group(['middleware' => ['web']], function () {
+
+        });
+
+        Route::post('/students', [StudentController::class, 'store'])->name('student.store');
+        Route::put('/users/{id}', [StudentController::class, 'store'])->name('student.store');
+
 
     });
 
