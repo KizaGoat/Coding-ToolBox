@@ -12,12 +12,12 @@
     <div class="card card-grid h-full min-w-full flex flex-col justify-between">
         <div class="card-header">
             <h3 class="card-title text-center">
-                Promotions
+                Promotions: {{ $totalproms }}
             </h3>
         </div>
 
         <!-- Show number of cohort -->
-        <p>Total des promotions: {{ $totalproms }}</p>
+
 
         <div class="card-body flex flex-col gap-5 justify-center items-center">
             <!-- Link -->
@@ -30,17 +30,15 @@
     <div class="card card-grid h-full min-w-full flex flex-col justify-between">
         <div class="card-header">
             <h3 class="card-title text-center flex justify-center items-center">
-                Etudiants
+                Etudiants: {{ $totalStudents }}
             </h3>
         </div>
 
         <!-- Show number of student -->
-        <p>Total des étudiants : {{ $totalStudents }}</p>
-
         <div class="card-body flex flex-col gap-5 justify-center items-center">
             <!-- Link -->
             <a href="{{ route('student.index') }}" class="btn w-full text-center">
-                Voir Les Etudiants
+                Voir Les Etudiants:
             </a>
         </div>
     </div>
@@ -48,12 +46,12 @@
     <div class="card card-grid h-full min-w-full flex flex-col justify-between">
         <div class="card-header">
             <h3 class="card-title text-center">
-                Enseignants
+                Enseignants: {{ $totalteacher }}
             </h3>
         </div>
 
         <!-- Show number of teacher -->
-        <p>Total des Enseignants: {{ $totalteacher }}</p>
+
 
         <div class="card-body flex flex-col gap-5 justify-center items-center">
             <!-- Link -->
@@ -66,12 +64,11 @@
     <div class="card card-grid h-full min-w-full flex flex-col justify-between">
         <div class="card-header">
             <h3 class="card-title text-center">
-                Groupes
+                Groupes: {{ $totalgroups }}
             </h3>
         </div>
 
         <!-- Show number of groups -->
-        <p>Total des Groupes: {{ $totalgroups }}</p>
 
         <div class="card-body flex flex-col gap-5 justify-center items-center">
             <!-- Link  -->

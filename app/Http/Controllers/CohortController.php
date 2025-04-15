@@ -62,4 +62,6 @@ class CohortController extends Controller
             'cohort' => $cohort
         ]);
     }
+
+    
 }
