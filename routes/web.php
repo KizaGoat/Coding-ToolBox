@@ -85,6 +85,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/cohorts', [CohortController::class, 'store'])->name('cohort.store');
         Route::delete('cohort/{id}', [CohortController::class, 'destroy'])->name('cohort.destroy');
 
+        Route::middleware('auth')->group(function () {
+            Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+            Route::put('/profile/info', [ProfileController::class, 'updateProfileInfo'])->name('profile.update.info');
+        });
 
 
     });

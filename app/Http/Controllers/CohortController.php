@@ -54,8 +54,6 @@ class CohortController extends Controller
     }
 
 
-
-
     public function show(Cohort $cohort) {
 
         return view('pages.cohorts.show', [
@@ -63,5 +61,5 @@ class CohortController extends Controller
         ]);
     }
 
-    
+
 }

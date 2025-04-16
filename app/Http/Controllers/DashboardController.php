@@ -12,6 +12,7 @@ class DashboardController extends Controller
     public function index()
     {
         $userRole = auth() ->user()->school() ->pivot-> role;
+
         $totalStudents = UserSchool::where('role', 'student')->count();
 
         $totalproms = Cohort::count();
