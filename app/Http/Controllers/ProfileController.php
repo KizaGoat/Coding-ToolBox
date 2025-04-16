@@ -79,25 +79,25 @@ class ProfileController extends Controller
 
     public function updatePassword(Request $request)
     {
-        // Validation des champs
+        // input field required
         $validated = $request->validate([
-            'current_password' => 'required|string',  // Le mot de passe actuel doit être renseigné
-            'new_password' => 'required|string|min:8|confirmed', // Le nouveau mot de passe doit faire au moins 8 caractères et être confirmé
+            'current_password' => 'required|string',
+            'new_password' => 'required|string|min:8|confirmed',
         ]);
 
-        $user = $request->user(); // Récupérer l'utilisateur actuellement authentifié
+        $user = $request->user();
 
-        // Vérifier si le mot de passe actuel est correct
+        //verified if the password it's the same that password in bdd.
         if (!Hash::check($validated['current_password'], $user->password)) {
-            // Si le mot de passe actuel ne correspond pas, retour à la page avec une erreur
+            // if the passwords is not the same, return an error message.
             return back()->withErrors(['current_password' => 'Le mot de passe actuel est incorrect.']);
         }
 
-        // Mettre à jour le mot de passe
-        $user->password = Hash::make($validated['new_password']); // Créer un hash sécurisé pour le nouveau mot de passe
-        $user->save(); // Sauvegarder le nouvel état de l'utilisateur avec le mot de passe mis à jour
+        //Hash the new password and save it to the bdd.
+        $user->password = Hash::make($validated['new_password']);
+        $user->save();
 
-        // Rediriger l'utilisateur avec un message de succès
+        // redirect to success message
         return redirect()->route('profile.edit')->with('status', 'Password updated successfully!');
     }
 }
