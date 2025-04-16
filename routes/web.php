@@ -91,8 +91,12 @@ Route::middleware('auth')->group(function () {
         });
 
         Route::put('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
+
         Route::put('/teacher/{id}', [TeacherController::class, 'update'])->name('teacher.update');
+
         Route::put('/cohort/{id}', [CohortController::class, 'update'])->name('cohort.update');
+
+        Route::put('/student/{id}', [StudentController::class, 'update'])->name('student.update');
 
 
     });

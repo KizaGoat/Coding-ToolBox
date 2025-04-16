@@ -54,6 +54,32 @@ class StudentController extends Controller
         return redirect()->route('student.index')->with('success', 'L\'étudiant a été créé avec succès');
     }
 
+    public function update(Request $request, $id)
+    {
+        // Validate form data
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'birth_date' => 'required|date',
+        ]);
+
+        // Find student by ID
+        $student = UserSchool::findOrFail($id);
+
+        // Update student data
+        $student->user->first_name = $validated['first_name'];
+        $student->user->last_name = $validated['last_name'];
+        $student->user->email = $validated['email'];
+        $student->user->birth_date = $validated['birth_date'];
+
+        // Save changes
+        $student->user->save();
+
+        // Redirect with success message
+        return redirect()->route('student.index')->with('success', 'Les informations de l\'étudiant ont été mises à jour avec succès.');
+    }
+
     // this function is used for delete any column
     public function destroy($id)
     {
