@@ -85,7 +85,7 @@ npm run dev
 | Rôle       | Email                         | Mot de passe |
 |------------|-------------------------------|--------------|
 | **Admin**  | admin@codingfactory.com       | 123456       |
-| Enseignant | teacher@codingfactory.com     | 123456       |
+| Enseignant | titihenry@dadgmail.cghgfd    | 123456789/   |
 | Étudiant   | student@codingfactory.com     | 123456       |
 
 ---

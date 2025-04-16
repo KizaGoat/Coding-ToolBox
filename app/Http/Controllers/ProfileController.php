@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
-use App\Models\ProfilUserChange; // Assurez-vous d'importer ce modèle
+use App\Models\ProfilUserChange;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -76,4 +77,27 @@ class ProfileController extends Controller
         return redirect()->route('profile.edit')->with('status', 'profile-updated');
     }
 
+    public function updatePassword(Request $request)
+    {
+        // Validation des champs
+        $validated = $request->validate([
+            'current_password' => 'required|string',  // Le mot de passe actuel doit être renseigné
+            'new_password' => 'required|string|min:8|confirmed', // Le nouveau mot de passe doit faire au moins 8 caractères et être confirmé
+        ]);
+
+        $user = $request->user(); // Récupérer l'utilisateur actuellement authentifié
+
+        // Vérifier si le mot de passe actuel est correct
+        if (!Hash::check($validated['current_password'], $user->password)) {
+            // Si le mot de passe actuel ne correspond pas, retour à la page avec une erreur
+            return back()->withErrors(['current_password' => 'Le mot de passe actuel est incorrect.']);
+        }
+
+        // Mettre à jour le mot de passe
+        $user->password = Hash::make($validated['new_password']); // Créer un hash sécurisé pour le nouveau mot de passe
+        $user->save(); // Sauvegarder le nouvel état de l'utilisateur avec le mot de passe mis à jour
+
+        // Rediriger l'utilisateur avec un message de succès
+        return redirect()->route('profile.edit')->with('status', 'Password updated successfully!');
+    }
 }
