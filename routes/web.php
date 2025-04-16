@@ -89,7 +89,11 @@ Route::middleware('auth')->group(function () {
             Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
             Route::put('/profile/info', [ProfileController::class, 'updateProfileInfo'])->name('profile.update.info');
         });
+
         Route::put('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
+        Route::put('/teacher/{id}', [TeacherController::class, 'update'])->name('teacher.update');
+        Route::put('/cohort/{id}', [CohortController::class, 'update'])->name('cohort.update');
+
 
     });
 

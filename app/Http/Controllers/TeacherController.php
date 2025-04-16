@@ -64,10 +64,22 @@ class TeacherController extends Controller
     }
 
     // this function is used for edit any column
-    public function edit(Request $request, $id)
+    public function update(Request $request, $id)
     {
+        // Retrieve the teacher information id
+        $teacher = UserSchool::findOrFail($id);
 
-        // Recuperer le user par l'id
-        // Modifier les colonnes
+        // Update the teacher user data with the new values from the request
+        $teacher->user->last_name = $request->input('last_name');
+        $teacher->user->first_name = $request->input('first_name');
+        $teacher->user->birth_date = $request->input('birth_date');
+        $teacher->user->email = $request->input('email');
+
+        // Save the updated user data to the database
+        $teacher->user->save();
+
+        // Redirect back to the teacher list with a success message
+        return redirect()->route('teacher.index')->with('success', 'Les informations ont été mises à jour.');  // Success message
     }
+
 }

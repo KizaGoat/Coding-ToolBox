@@ -44,6 +44,33 @@ class CohortController extends Controller
         return redirect()->route('cohort.index')->with('success', 'La promo a été créée avec succès');
     }
 
+    public function update(Request $request, $id)
+    {
+        // validate form data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+        ]);
+
+        // retrieve the cohort to update by its id
+        $cohort = Cohort::findOrFail($id);
+
+        // update the cohort fields
+        $cohort->name = $request->input('name');
+        $cohort->description = $request->input('description');
+        $cohort->start_date = $request->input('start_date');
+        $cohort->end_date = $request->input('end_date');
+
+        // save the changes to the database
+        $cohort->save();
+
+        // redirect to the cohort index page with a success message
+        return redirect()->route('cohort.index')->with('success', 'Promotion mise à jour avec succès');
+    }
+
+
     // this function is used for delete any column
     public function destroy($id)
     {
