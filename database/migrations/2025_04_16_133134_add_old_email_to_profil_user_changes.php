@@ -11,15 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Add old_email column
         Schema::table('profil_user_changes', function (Blueprint $table) {
-            $table->string('old_email')->nullable(); // Ajoute la colonne 'old_email'
+            $table->string('old_email')->nullable();
         });
     }
 
     public function down(): void
     {
+        // Drop old_email column
         Schema::table('profil_user_changes', function (Blueprint $table) {
-            $table->dropColumn('old_email'); // Retirer la colonne si besoin
+            $table->dropColumn('old_email');
         });
     }
 

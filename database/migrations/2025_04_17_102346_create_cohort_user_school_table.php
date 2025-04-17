@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Create pivot table "cohort_user_school"
         Schema::create('cohort_user_school', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_school_id')->constrained('users_schools')->onDelete('cascade');

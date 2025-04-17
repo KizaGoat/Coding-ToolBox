@@ -13,7 +13,7 @@ class StudentController extends Controller
 {
     public function index()
     {
-
+        // Get all student link to the user
         $user_schools = UserSchool::where('role', 'student')
             ->whereHas('user')
             ->with('user')
@@ -84,6 +84,7 @@ class StudentController extends Controller
     public function destroy($id)
     {
         $user_school = UserSchool::findOrFail($id);
+        $user_school->user()->delete();
         $user_school->delete();
 
         return redirect()->route('student.index')->with('success', 'etudiant supprimée avec succès');

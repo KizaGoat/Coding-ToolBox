@@ -18,6 +18,7 @@ class TeacherController extends Controller
             ->whereHas('user')
             ->with('user')
             ->get();
+
         return view('pages.teachers.index', compact('user_schools'));
     }
 
@@ -49,14 +50,11 @@ class TeacherController extends Controller
         $user_school->role = 'teacher';
         $user_school->save();
 
+        // Attach cohorts if present in the request
         if ($request->has('cohorts')) {
             $user_school->cohorts()->attach($request->input('cohorts'));
         }
-
-
-
-
-
+        // Redirect with success message
         return redirect()->route('teacher.index')->with('success', 'L\'enseignant a été créé avec succès');
     }
 
@@ -64,6 +62,7 @@ class TeacherController extends Controller
     public function destroy($id)
     {
         $user_school = UserSchool::findOrFail($id);
+        $user_school->user()->delete();
         $user_school->delete();
 
         return redirect()->route('teacher.index')->with('success', 'enseignant supprimée avec succès');
@@ -72,25 +71,25 @@ class TeacherController extends Controller
     // this function is used for edit any column
     public function update(Request $request, $id)
     {
-        // Récupérer l'enseignant via UserSchool pour avoir accès à la relation avec les cohortes
+        // Retrieve the teacher through UserSchool to access the cohorts relationship
         $user_school = UserSchool::findOrFail($id);
 
-        // Mettre à jour les informations de l'enseignant
+        // Update teacher information
         $user_school->user->last_name = $request->input('last_name');
         $user_school->user->first_name = $request->input('first_name');
         $user_school->user->birth_date = $request->input('birth_date');
         $user_school->user->email = $request->input('email');
 
-        // Sauvegarder les modifications de l'enseignant
+        // Save the updated teacher's data
         $user_school->user->save();
 
-        // Si des promotions sont sélectionnées, mettre à jour la relation many-to-many
+        // If cohorts are selected, update the many-to-many relationship
         if ($request->has('cohorts')) {
-            // Synchroniser les promotions sélectionnées avec l'enseignant
+            // Sync selected cohorts with the teacher
             $user_school->cohorts()->sync($request->input('cohorts'));
         }
 
-        // Rediriger avec un message de succès
+        // Redirect with success message
         return redirect()->route('teacher.index')->with('success', 'Les informations de l\'enseignant ont été mises à jour avec succès');
     }
 

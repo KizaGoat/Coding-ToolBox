@@ -8,7 +8,7 @@
         </div>
         <div class="card-body grid gap-5">
 
-            <!-- Photo -->
+            <!-- avatar -->
             <div class="flex items-center flex-wrap gap-2.5">
                 <label class="form-label max-w-56">Photo</label>
                 <div class="flex items-center justify-between flex-wrap grow gap-2.5">
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <!-- Last name -->
+            <!-- last name -->
             <div class="w-full">
                 <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
                     <label class="form-label flex items-center gap-1 max-w-56">Last name</label>
@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <!-- First name -->
+            <!-- first name -->
             <div class="w-full">
                 <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
                     <label class="form-label flex items-center gap-1 max-w-56">First name</label>
@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <!-- Phone -->
+            <!-- phone -->
             <div class="w-full">
                 <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
                     <label class="form-label flex items-center gap-1 max-w-56">Phone number</label>
@@ -65,7 +65,7 @@
                         :messages="$errors->get('phone')" />
                 </div>
             </div>
-            <!-- Email -->
+            <!-- email -->
             <div class="w-full">
                 <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
                     <label class="form-label max-w-56">
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <!-- Submit button -->
+            <!-- submit button -->
             <div class="flex justify-end pt-2.5">
                 <button type="submit" class="btn btn-primary">Save Changes</button>
             </div>

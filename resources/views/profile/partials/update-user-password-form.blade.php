@@ -9,7 +9,7 @@
             </h3>
         </div>
         <div class="card-body grid gap-5">
-            <!-- Current Password -->
+            <!-- current Password -->
             <div class="w-full">
                 <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
                     <label class="form-label max-w-56">
@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <!-- New Password -->
+            <!-- new password -->
             <div class="w-full">
                 <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
                     <label class="form-label max-w-56">
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <!-- Confirm New Password -->
+            <!-- confirm new password -->
             <div class="w-full">
                 <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
                     <label class="form-label max-w-56">
@@ -48,7 +48,7 @@
                 </div>
             </div>
 
-            <!-- Submit button -->
+            <!-- submit button -->
             <div class="flex justify-end pt-2.5">
                 <button type="submit" class="btn btn-primary">
                     Reset Password

@@ -98,3 +98,23 @@ npm run dev
 - 🧠 Génération automatique de QCM par langage sélectionné
 - ✅ Système de Kanban pour les rétrospectives
 - 📈 Statistiques d’usage et suivi pédagogique
+
+
+
+
+✅ User Stories – État d'avancement
+Story 1 : ✅ Tout est fait.
+
+Story 2 : ⚠️ Presque tout est fait.
+L’enseignant ne peut pas encore voir les promotions auxquelles il est lié sur sa page personnelle. Je n’ai pas réussi à l'afficher.
+
+Story 3 : ⚠️ Presque tout est fait.
+L’email ne s’envoie pas, c’est dommage, mais toute la logique est en place.
+
+Story 4 : ✅ Tout est fait.
+
+Story 5 : ✅ Tout est fait.
+
+Story 6 : ⚠️ Partiellement fait.
+La suppression de compte ne fonctionne pas.
+L’avatar ne s'affiche pas, je ne comprends pas pourquoi, pourtant le code a bien été rédigé. Le reste fonctionne.

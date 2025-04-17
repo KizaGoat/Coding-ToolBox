@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Remove password column
         Schema::table('profil_user_changes', function (Blueprint $table) {
             $table->dropColumn('password');
         });
@@ -18,8 +19,9 @@ return new class extends Migration
 
     public function down(): void
     {
+        // Add password column
         Schema::table('profil_user_changes', function (Blueprint $table) {
-            $table->string('password')->nullable();  // Ajoute la colonne password si nécessaire pour rollback
+            $table->string('password')->nullable();
         });
     }
 

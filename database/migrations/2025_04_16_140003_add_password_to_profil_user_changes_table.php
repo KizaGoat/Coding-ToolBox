@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Ajouter une colonne password à la table profil_user_changes
+        //add password column
         Schema::table('profil_user_changes', function (Blueprint $table) {
-            $table->string('password')->nullable();  // Colonne password
+            $table->string('password')->nullable();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Supprimer la colonne password si la migration est annulée
+        // delete column if migration is delete
         Schema::table('profil_user_changes', function (Blueprint $table) {
             $table->dropColumn('password');
         });

@@ -99,6 +99,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/student/{id}', [StudentController::class, 'update'])->name('student.update');
 
 
+
     });
 
 });

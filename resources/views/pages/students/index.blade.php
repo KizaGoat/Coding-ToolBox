@@ -32,7 +32,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <!-- students list -->
+                                    <!-- student list -->
                                     @foreach($user_schools as $user_schoolsss)
                                         <tr>
                                             <td>{{ $user_schoolsss->user->last_name }}</td>
@@ -41,17 +41,17 @@
                                             <td>
                                                 <div class="flex items-center justify-between">
 
-                                                    <!-- delete buttun and edit button -->
-                                                    <form method="POST" action="{{ route('student.destroy', $user_schoolsss->id) }}" style="display: inline-block;">
+                                                    <!-- edit button -->
+                                                    <button
+                                                        type="button"
+                                                        class="bg-blue-500 text-white px-2 py-1 rounded-md text-sm"
+                                                        onclick="openEditModal({{ $user_schoolsss->id }}, '{{ $user_schoolsss->user->first_name }}', '{{ $user_schoolsss->user->last_name }}', '{{ $user_schoolsss->user->email }}', '{{ $user_schoolsss->user->birth_date }}')">
+                                                        Modifier
+                                                    </button>
+                                                    <!-- delete button -->
+                                                    <form method="POST" action="{{ route('student.destroy', $user_schoolsss->id) }}" style="display: inline;">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button
-                                                            type="button"
-                                                            class="bg-blue-500 text-white px-2 py-1 rounded-md text-sm"
-                                                            onclick="openEditModal({{ $user_schoolsss->id }}, '{{ $user_schoolsss->user->first_name }}', '{{ $user_schoolsss->user->last_name }}', '{{ $user_schoolsss->user->email }}', '{{ $user_schoolsss->user->birth_date }}')">
-                                                            <!-- Edit button -->
-                                                            Modifier
-                                                        </button>
                                                         <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded-md">
                                                             Supprimer
                                                         </button>
@@ -114,23 +114,7 @@
     <!-- Include the modal -->
     @include('pages.students.student-modal')
 
-    <script>
-        // Open the modal and populate the form with student data
-        function openEditModal(id, first_name, last_name, email, birth_date) {
-            document.getElementById('first_name').value = first_name;
-            document.getElementById('last_name').value = last_name;
-            document.getElementById('email').value = email;
-            document.getElementById('birth_date').value = birth_date;
-            // Set form action
-            document.getElementById('edit-student-form').action = `/student/${id}`;
-            // Show modal
-            document.getElementById('student-modal').classList.remove('hidden');
-        }
+    <!-- include JS  -->
+    <script src="{{ asset('js/edit-student.js') }}"></script>
 
-        // Close the modal
-        function closeModal() {
-            document.getElementById('student-modal').classList.add('hidden'); // Hide modal
-        }
-
-    </script>
 </x-app-layout>
