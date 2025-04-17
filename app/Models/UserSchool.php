@@ -14,4 +14,11 @@ class UserSchool extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function cohorts()
+    {
+        return $this->belongsToMany(Cohort::class, 'cohort_user_school');
+    }
+
+
+
 }

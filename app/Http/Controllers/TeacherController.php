@@ -49,9 +49,15 @@ class TeacherController extends Controller
         $user_school->role = 'teacher';
         $user_school->save();
 
+        if ($request->has('cohorts')) {
+            $user_school->cohorts()->attach($request->input('cohorts'));
+        }
 
 
-        return redirect()->route('teacher.index')->with('success', 'L\'étudiant a été créé avec succès');
+
+
+
+        return redirect()->route('teacher.index')->with('success', 'L\'enseignant a été créé avec succès');
     }
 
     // this function is used for delete any column

@@ -66,6 +66,8 @@ class CohortController extends Controller
         // save the changes to the database
         $cohort->save();
 
+
+
         // redirect to the cohort index page with a success message
         return redirect()->route('cohort.index')->with('success', 'Promotion mise à jour avec succès');
     }
