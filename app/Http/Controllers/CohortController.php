@@ -10,17 +10,41 @@ use Illuminate\Http\Request;
 use App\Models\School;
 use Illuminate\Support\Facades\Hash;
 use App\Models\UserSchool;
+use Illuminate\Support\Facades\Auth;
 
 class CohortController extends Controller
 {
 
     public function index()
     {
-        // get all cohort from database
-        $cohorts = Cohort::all();
+        // Récupérer l'utilisateur authentifié
+        $user = Auth::user();
 
+        // Assurer que la relation userSchools existe et est une collection, même vide
+        $userSchools = $user->userSchools ?? collect();  // Si userSchools est null, on lui attribue une collection vide
+
+        if ($userSchools->isEmpty()) {
+            // Si l'utilisateur n'a pas d'écoles associées, on renvoie une vue d'erreur ou une liste vide
+            return view('pages.cohorts.index', ['cohorts' => collect()]);
+        }
+
+        // Filtrer uniquement les promotions (cohorts) auxquelles l'utilisateur est lié
+        $cohorts = $userSchools->flatMap(function ($userSchool) {
+            return $userSchool->cohorts;  // Récupère les promotions liées à l'école de l'utilisateur
+        });
+
+        // Si l'utilisateur a le rôle 'admin', alors on peut récupérer toutes les promotions
+        $role = $userSchools->first()?->role;  // Récupère le rôle de l'utilisateur
+        if ($role === 'admin') {
+            // Si c'est un administrateur, récupère toutes les promotions
+            $cohorts = Cohort::all();
+        }
+
+        // Retourner la vue avec les promotions filtrées
         return view('pages.cohorts.index', compact('cohorts'));
     }
+
+
 
     public function store(Request $request)
     {

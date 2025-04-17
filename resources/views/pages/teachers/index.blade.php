@@ -100,16 +100,14 @@
                         <x-forms.input name="name" :label="__('Nom')" />
                         <x-forms.input type="email" name="Email" :label="__('Email')" />
                         <x-forms.input type="date" name="year" :label="__('Date de naissance')" />
-
-                        <!-- add proms for teacher -->
-                        <label for="cohort" class="font-medium text-sm text-gray-700">Promotion</label>
-                        <select name="cohort" id="cohort" class="form-select rounded-md shadow-sm w-full">
-                            <option value="">-- Choisir une promotion --</option>
+                        <label for="cohorts" class="font-medium text-sm text-gray-700">Promotions</label>
+                        <select name="cohorts[]" multiple class="form-select rounded-md shadow-sm w-full">
                             @foreach(App\Models\Cohort::all() as $cohort)
                                 <option value="{{ $cohort->id }}">{{ $cohort->name }}</option>
                             @endforeach
                         </select>
                         <x-forms.primary-button>{{ __('Valider') }}</x-forms.primary-button>
+
                         @if(session('success'))
                             <div class="alert alert-success">{{ session('success') }}</div>
                         @endif

@@ -72,20 +72,26 @@ class TeacherController extends Controller
     // this function is used for edit any column
     public function update(Request $request, $id)
     {
-        // Retrieve the teacher information id
-        $teacher = UserSchool::findOrFail($id);
+        // Récupérer l'enseignant via UserSchool pour avoir accès à la relation avec les cohortes
+        $user_school = UserSchool::findOrFail($id);
 
-        // Update the teacher user data with the new values from the request
-        $teacher->user->last_name = $request->input('last_name');
-        $teacher->user->first_name = $request->input('first_name');
-        $teacher->user->birth_date = $request->input('birth_date');
-        $teacher->user->email = $request->input('email');
+        // Mettre à jour les informations de l'enseignant
+        $user_school->user->last_name = $request->input('last_name');
+        $user_school->user->first_name = $request->input('first_name');
+        $user_school->user->birth_date = $request->input('birth_date');
+        $user_school->user->email = $request->input('email');
 
-        // Save the updated user data to the database
-        $teacher->user->save();
+        // Sauvegarder les modifications de l'enseignant
+        $user_school->user->save();
 
-        // Redirect back to the teacher list with a success message
-        return redirect()->route('teacher.index')->with('success', 'Les informations ont été mises à jour.');  // Success message
+        // Si des promotions sont sélectionnées, mettre à jour la relation many-to-many
+        if ($request->has('cohorts')) {
+            // Synchroniser les promotions sélectionnées avec l'enseignant
+            $user_school->cohorts()->sync($request->input('cohorts'));
+        }
+
+        // Rediriger avec un message de succès
+        return redirect()->route('teacher.index')->with('success', 'Les informations de l\'enseignant ont été mises à jour avec succès');
     }
 
 }
