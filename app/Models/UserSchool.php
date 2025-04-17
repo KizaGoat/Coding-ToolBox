@@ -17,7 +17,6 @@ class UserSchool extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
     // Cohorts relationship (many-to-many)
     public function cohorts()
     {

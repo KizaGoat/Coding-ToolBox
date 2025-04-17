@@ -94,7 +94,12 @@
                         <x-forms.input name="name" :label="__('Nom')" />
                         <x-forms.input type="email" name="Email" :label="__('Email')" />
                         <x-forms.input type="date" name="year" :label="__('Date de naissance')" placeholder=""/>
-
+                        <label for="cohort_id">Promotion</label>
+                        <select name="cohort_id" id="cohort_id" class="form-select" required>
+                            @foreach($cohorts as $cohort)
+                                <option value="{{ $cohort->id }}">{{ $cohort->name }}</option>
+                            @endforeach
+                        </select>
                         <!-- soumission button -->
                         <x-forms.primary-button>
                             {{ __('Valider') }}

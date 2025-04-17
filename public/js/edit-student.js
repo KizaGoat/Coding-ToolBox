@@ -1,4 +1,4 @@
-// Open the modal and populate the form with student data
+// Open the modal with student data
 function openEditModal(id, first_name, last_name, email, birth_date) {
     document.getElementById('first_name').value = first_name;
     document.getElementById('last_name').value = last_name;

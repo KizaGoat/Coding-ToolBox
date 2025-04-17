@@ -109,7 +109,8 @@ Story 2 : ⚠️ Presque tout est fait.
 L’enseignant ne peut pas encore voir les promotions auxquelles il est lié sur sa page personnelle. Je n’ai pas réussi à l'afficher.
 
 Story 3 : ⚠️ Presque tout est fait.
-L’email ne s’envoie pas, c’est dommage, mais toute la logique est en place.
+L’email ne s’envoie pas
+pour l'etudiant on peut modifier ou lui mettre une promo seulement il ne s'affichera pas dans la pages donc il fonctionne en back (dans la bdd)
 
 Story 4 : ✅ Tout est fait.
 
