@@ -82,11 +82,11 @@ npm run dev
 
 ## 👤 Comptes de test disponibles
 
-| Rôle       | Email                         | Mot de passe |
-|------------|-------------------------------|--------------|
-| **Admin**  | admin@codingfactory.com       | 123456       |
-| Enseignant | titihenry@dadgmail.cghgfd    | 123456789/   |
-| Étudiant   | student@codingfactory.com     | 123456       |
+| Rôle       | Email                     | Mot de passe |
+|------------|---------------------------|--------------|
+| **Admin**  | admin@codingfactory.com   | 12345678     |
+| Enseignant | teacher@codingfactory.com | 123456       |
+| Étudiant   | student@codingfactory.com | 123456       |
 
 ---
 
@@ -103,6 +103,17 @@ npm run dev
 
 
 ✅ User Stories – État d'avancement
+
+Tous d'abord j'ai un ptit probleme qui fait que les forms sont visible sur le compte admin et teacher
+alors qu'il est censé etre que sur admin pourtant le code est bien present j'ai juste pas activé les can et endcan
+pour evité les problemes mais tu peut le voir dans le CohortPolicy.
+
+et puis l'affichage des students dans une promo est en dure aussi 
+
+sinon tous est bon
+
+
+
 Story 1 : ✅ Tout est fait.
 
 Story 2 : ⚠️ Presque tout est fait.

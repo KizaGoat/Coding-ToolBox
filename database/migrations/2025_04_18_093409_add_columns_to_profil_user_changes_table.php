@@ -11,21 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // add user_id foreign key with cascade delete
-        Schema::create('profil_user_changes', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->after('id');
+        Schema::table('profil_user_changes', function (Blueprint $table) {
+            //
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        // drop user_id column
         Schema::table('profil_user_changes', function (Blueprint $table) {
-            $table->dropColumn('user_id');
+            //
         });
     }
-
 };
