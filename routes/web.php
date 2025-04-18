@@ -87,6 +87,7 @@ Route::middleware('auth')->group(function () {
 
         Route::middleware('auth')->group(function () {
             Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+            Route::post('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
             Route::put('/profile/info', [ProfileController::class, 'updateProfileInfo'])->name('profile.update.info');
         });
 

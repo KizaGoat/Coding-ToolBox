@@ -25,10 +25,14 @@
         <div class="flex justify-end gap-2.5">
             <button class="btn btn-light">
                 Deactivate Instead
+            </button>
+
+            <form method="POST" action="{{route('profile.destroy')}}">
+                @csrf
                 <button class="btn btn-danger">
                     Delete Account
                 </button>
-            </button>
+            </form>
         </div>
     </div>
 </div>

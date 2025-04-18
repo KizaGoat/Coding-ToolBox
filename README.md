@@ -82,11 +82,11 @@ npm run dev
 
 ## 👤 Comptes de test disponibles
 
-| Rôle       | Email                     | Mot de passe |
-|------------|---------------------------|--------------|
-| **Admin**  | admin@codingfactory.com   | 12345678     |
-| Enseignant | teacher@codingfactory.com | 123456       |
-| Étudiant   | student@codingfactory.com | 123456       |
+| Rôle       | Email                     | Mot de passe                                                        |
+|------------|---------------------------|---------------------------------------------------------------------|
+| **Admin**  | admin@codingfactory.com   | 12345678                                                            |
+| Enseignant | teacher@codingfactory.com | 123456                                                              |
+| Étudiant   | student@codingfactory.com | 123456 (a recrée si besoin car supprimer pour teste du bouton delete) |
 
 ---
 
@@ -117,16 +117,15 @@ sinon tous est bon
 Story 1 : ✅ Tout est fait.
 
 Story 2 : ⚠️ Presque tout est fait.
-L’enseignant ne peut pas encore voir les promotions auxquelles il est lié sur sa page personnelle. Je n’ai pas réussi à l'afficher.
+L’enseignant ne peut pas encore voir les promotions auxquelles il est lié sur sa page personnelle.
 
 Story 3 : ⚠️ Presque tout est fait.
 L’email ne s’envoie pas
-pour l'etudiant on peut modifier ou lui mettre une promo seulement il ne s'affichera pas dans la pages donc il fonctionne en back (dans la bdd)
+pour l'etudiant on peut modifier ou lui mettre une promo seulement il ne s'affichera pas dans la pages correspondante mais il fonctionne en back (dans la bdd)
 
 Story 4 : ✅ Tout est fait.
 
 Story 5 : ✅ Tout est fait.
 
-Story 6 : ⚠️ Partiellement fait.
-La suppression de compte ne fonctionne pas.
+Story 6 : ⚠️ presque fait.
 L’avatar ne s'affiche pas, je ne comprends pas pourquoi, pourtant le code a bien été rédigé. Le reste fonctionne.

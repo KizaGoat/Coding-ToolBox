@@ -100,4 +100,20 @@ class ProfileController extends Controller
         // redirect to success message
         return redirect()->route('profile.edit')->with('status', 'Password updated successfully!');
     }
+
+    public function destroy(Request $request): RedirectResponse
+    {
+
+        $user = $request->user();
+
+        Auth::logout();
+
+        $user->delete();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return Redirect::to('/login');
+
+    }
 }
